@@ -1,0 +1,21 @@
+# Use an existing Docker image as a base\
+FROM python:3.10-slim
+
+# Set the working directory in the container\
+WORKDIR /app
+
+# Install Git
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+
+# Clone the GitHub repository into the container
+RUN git clone https://github.com/LiTianYeoh/streamlit_malaysia_population .
+
+# Install dependencies (if any, e.g., if using requirements.txt for Python)
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose port 8501 (useful if running a web app like Streamlit)
+EXPOSE 8501
+
+# Command to run the application (replace this with the actual command for your project)
+# For a Streamlit app, you might use something like:
+CMD ["streamlit", "run", "Homepage.py", "server.port=8501"]
