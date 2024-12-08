@@ -119,7 +119,9 @@ filtered_df = filtered_df.rename(columns = {
     'ethnicity': 'Ethnicity',
     'population': "Population ('000)"
 }).drop(columns=['age_midr'])
-st.dataframe(filtered_df.sample(10), width=None, hide_index=True)
 
-# to update GitHub link
-st.markdown("A link to my GitHub repo can be found **here**")
+st.dataframe(filtered_df.sample(min(10, len(filtered_df))), width=None, hide_index=True)
+
+
+REPO_URL = 'https://github.com/LiTianYeoh/streamlit_malaysia_population'
+st.markdown(f"A link to my GitHub repo can be found [here]({REPO_URL}).")
